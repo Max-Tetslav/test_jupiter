@@ -1,0 +1,24 @@
+.button {
+  height: 48px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.transparent {
+  width: 138px;
+  border: 1px solid var(--white);
+  color: inherit;
+}
+
+.fill {
+  width: 170px;
+  filter: drop-shadow(0 3px 5px rgba(57 20 0 / 8%));
+  background-color: var(--white);
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 5px 7px rgba(57 20 0 / 15%));
+  }
+}
