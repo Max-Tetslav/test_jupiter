@@ -4,6 +4,8 @@ import { CATEGORY_LIST } from '../../../utils/constants/app';
 import cl from './Select.module.scss';
 
 const Select = ({ changeHandler, current }) => {
+  // Функция выбора категории для мобильного разрешения
+
   const onChange = useCallback((e) => {
     changeHandler(e.target.value);
   }, []);

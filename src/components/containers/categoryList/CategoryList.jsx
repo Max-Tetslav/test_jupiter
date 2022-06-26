@@ -7,6 +7,8 @@ import cl from './CategoryList.module.scss';
 const CategoryList = ({ changeHandler, current }) => {
   const [component, setComponent] = useState(null);
 
+  // Список категорий для десктопа
+
   const list = useMemo(() => {
     return (
       <ul className={cl.list}>
@@ -29,6 +31,8 @@ const CategoryList = ({ changeHandler, current }) => {
     );
   }, [current]);
 
+  // Определяет какой компонент должен быть показан при первой загрузке
+
   const currentComponent = useMemo(() => {
     if (window.innerWidth > 1040) {
       return list;
@@ -36,6 +40,8 @@ const CategoryList = ({ changeHandler, current }) => {
 
     return <Select changeHandler={changeHandler} current={current} />;
   }, [window.innerWidth, current]);
+
+  // Функция вычисления компонента в зависимости от ширины экрана
 
   const resizeHandler = useCallback(() => {
     if (window.innerWidth > 1040) {
@@ -45,11 +51,15 @@ const CategoryList = ({ changeHandler, current }) => {
     }
   }, [window.innerWidth, list, current]);
 
+  // Добавляет листенер при изменении размера экрана
+
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
 
     return () => window.removeEventListener('resize', resizeHandler);
   }, [resizeHandler]);
+
+  // Устанавливает компонент при изменении категории
 
   useEffect(() => {
     setComponent(currentComponent);

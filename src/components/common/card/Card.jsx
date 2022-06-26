@@ -10,6 +10,8 @@ const Card = ({
   selectHandler,
   categoryHandler,
 }) => {
+  // Функция выбора карточки
+
   const clickHandler = useCallback(() => {
     if (isSelected) {
       selectHandler((state) => state.filter((item) => item !== name));

@@ -11,11 +11,15 @@ const CardList = ({
 }) => {
   const [filteredList, setFilteredList] = useState([]);
 
+  // Устанавливает первоначальный список карточек
+
   useEffect(() => {
     if (!filteredList.length) {
       setFilteredList(list);
     }
   }, [list]);
+
+  // Фильтрует карточки при смене категории
 
   useEffect(() => {
     if (category === 'Show All') {
@@ -24,6 +28,8 @@ const CardList = ({
       setFilteredList(list.filter((item) => item.category === category));
     }
   }, [category, list]);
+
+  // Элемент при пустом списке карточек в зависимости от категории
 
   const emptyList = useMemo(() => {
     if (category === 'Show All') {

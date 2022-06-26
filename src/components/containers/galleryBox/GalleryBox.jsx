@@ -14,9 +14,13 @@ const GalleryBox = () => {
   const [category, setCategory] = useState('Show All');
   const [isLoading, setIsLoading] = useState(true);
 
+  // Функция обработчик по нажатию Load More
+
   const loadHandler = useCallback(() => {
     setPage(1);
   }, []);
+
+  // Функция удаления выбранных карточек
 
   const deleteHandler = useCallback(
     (e) => {
@@ -30,6 +34,8 @@ const GalleryBox = () => {
     },
     [selectedList],
   );
+
+  // Устанавливает таймер загрузки при первой отрисовке/смене категории
 
   useEffect(() => {
     let timer;
@@ -47,6 +53,8 @@ const GalleryBox = () => {
     setIsLoading(true);
   }, [category]);
 
+  // Устанавливает список карточек в зависимости от того загружены ли дополнительные
+
   useEffect(() => {
     const actualList = IMG_DATA.filter((_, index) => {
       if (page === 0) {
@@ -58,6 +66,8 @@ const GalleryBox = () => {
 
     setList((state) => [...new Set([...state, ...actualList])]);
   }, [page]);
+
+  // Добавляет листенер для удаления карточек
 
   useEffect(() => {
     document.addEventListener('keydown', deleteHandler);
